@@ -1,11 +1,15 @@
 header {
     height: 100px;
+    background-color: #337ab7;
+    box-shadow: 0 3px 2px #888888;
+    color: #FFFFFF;
 }
 
 .title {
     width: 100%;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 500;
+    font-family: monospace;
     text-align: center;
 }
 
@@ -19,4 +23,19 @@ nav {
 nav .nav-item {
     padding: 20px 30px;
 
+}
+
+nav .nav-item a:link {
+    font-size: 20px;
+    font-family: monospace;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+nav .nav-item a:visited {
+    color: white;
+}
+
+nav .nav-item a:hover {
+    color: #888888;
 }

@@ -1,20 +1,22 @@
 import {Component} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'my-app-header',
     templateUrl: 'app/header/header.component.html',
-    styleUrls: ['app/header/header.component.css']
+    styleUrls: ['app/header/header.component.css'],
+    directives: [ROUTER_DIRECTIVES],
 })
 
 export class HeaderComponent {
     navItems = [
         {
-            name: 'Todo List',
-            url: 'http://www.google.com'
+            name: 'About Author',
+            routerLink: ['About']
         },
         {
-            name: 'About Author',
-            url: 'http://lukapopovic.info'
+            name: 'Todo Lists',
+            routerLink: ['Lists']
         }
         ];
     title = "ToDo App";

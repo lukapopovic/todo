@@ -1,0 +1,16 @@
+.my-app-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: monospace;
+    font-size: 30px;
+    color: #888888;
+    opacity: 0.5;
+}
+
+h1:hover {
+    opacity: 1;
+}

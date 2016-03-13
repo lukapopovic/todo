@@ -1,0 +1,20 @@
+<div class="detail-list">
+    <div class="detail-header content-div">
+        <h1>{{tempList?.name}}</h1>
+        <h3>Items to do:</h3>
+    </div>
+    <div class="form-group item-input content-div">
+        <input class="form-control" type="text" placeholder="Enter todo here..." 
+            [(ngModel)]="newItem" (keydown)="saveItem($event)">
+    </div>
+    <div class="list content-div">
+        <ul>
+            <li class="checkox" *ngFor="#item of tempList?.items">
+                <input type="checkbox" class="my-app-todo-item" (click)="checkItem($event, item)"><span>{{item}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="remove-container content-div">
+        <button class="btn btn-primary my-app-remove-items-btn" (click)="removeCheckedItems()">Remove Checked Items</button>
+    </div>
+</div>

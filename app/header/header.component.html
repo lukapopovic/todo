@@ -2,7 +2,7 @@
     <div class="title">{{title}}</div>
     <nav>
         <div [class]="className" *ngFor="#navItem of navItems">
-            <a [href]="navItem.url" [attr.title]="navItem.url">{{navItem.name}}</a>
+            <a [routerLink]="navItem.routerLink" [attr.title]="navItem.name">{{navItem.name}}</a>
         </div>
     </nav>
 </header>

@@ -11,32 +11,31 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var FooterComponent;
+    var AboutComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            FooterComponent = (function () {
-                function FooterComponent() {
+            AboutComponent = (function () {
+                function AboutComponent() {
                     this.author = {
-                        name: 'Luka Popovic',
-                        url: 'http://lukapopovic.info'
+                        name: 'Luka Popovic'
                     };
                 }
-                FooterComponent = __decorate([
+                AboutComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app-footer',
-                        templateUrl: 'app/footer/footer.component.html',
-                        styleUrls: ['app/footer/footer.component.css']
+                        selector: '<my-app-about>',
+                        templateUrl: 'app/about/about.component.html',
+                        styleUrls: ['app/about/about.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
-                ], FooterComponent);
-                return FooterComponent;
+                ], AboutComponent);
+                return AboutComponent;
             }());
-            exports_1("FooterComponent", FooterComponent);
+            exports_1("AboutComponent", AboutComponent);
         }
     }
 });
-//# sourceMappingURL=footer.component.js.map
+//# sourceMappingURL=about.component.js.map
