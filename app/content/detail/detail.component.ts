@@ -22,6 +22,7 @@ export class DetailComponent {
 
     saveItem(event){
         if(event.code === "Enter"){
+            console.log(this.tempList);
             this.tempList.items.push(this.newItem);
             this.refreshItems(this.tempList);
             this.clearItemField();

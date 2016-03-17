@@ -32,20 +32,29 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx', './config'], funct
                 function DataService(_http) {
                     this._http = _http;
                 }
+                // getLists(){
+                //     console.log(listsUrl);
+                //     return this._http.get(listsUrl)
+                //         .map(res => <ListInterface[]> res.json())
+                //         .do(data => console.log(data))
+                //         .catch(this.handleError);
+                // }
                 DataService.prototype.getLists = function () {
                     return this._http.get(listsUrl)
-                        .map(function (response) { return response.json().data; })
+                        .map(function (response) { return response.json(); })
                         .catch(this.handleError);
                 };
                 DataService.prototype.getList = function (id) {
                     return this._http.get(listsUrl + "/" + id)
-                        .map(function (response) { return response.json().data; })
+                        .map(function (response) { return response.json(); })
                         .catch(this.handleError);
                 };
                 DataService.prototype.addList = function (list) {
                     var body = JSON.stringify(list);
+                    console.log(body);
                     return this._http.post("" + listsUrl, body)
-                        .map(function (response) { return response.json().data; })
+                        .map(function (response) { return response.json(); })
+                        .do(function (data) { return console.log(data); })
                         .catch(this.handleError);
                 };
                 DataService.prototype.deleteList = function (list) {

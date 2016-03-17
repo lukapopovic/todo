@@ -35,6 +35,7 @@ System.register(['angular2/core', 'angular2/router', '../../shared/data.service'
                 };
                 DetailComponent.prototype.saveItem = function (event) {
                     if (event.code === "Enter") {
+                        console.log(this.tempList);
                         this.tempList.items.push(this.newItem);
                         this.refreshItems(this.tempList);
                         this.clearItemField();

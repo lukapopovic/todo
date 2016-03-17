@@ -11,22 +11,32 @@ export class DataService {
 
     constructor(private _http: Http){}
 
+    // getLists(){
+    //     console.log(listsUrl);
+    //     return this._http.get(listsUrl)
+    //         .map(res => <ListInterface[]> res.json())
+    //         .do(data => console.log(data))
+    //         .catch(this.handleError);
+    // }
+
     getLists(){
         return this._http.get(listsUrl)
-            .map((response: Response) => <ListInterface[]>response.json().data)
+            .map((response: Response) => <ListInterface[]>response.json())
             .catch(this.handleError);
     }
 
     getList(id: number){
         return this._http.get(`${listsUrl}/${id}`)
-            .map((response: Response) => response.json().data)
+            .map((response: Response) => response.json())
             .catch(this.handleError);
     }
 
     addList(list: ListInterface){
         let body = JSON.stringify(list);
+        console.log(body);
         return this._http.post(`${listsUrl}`, body)
-            .map((response: Response) => response.json().data)
+            .map((response: Response) => response.json())
+            .do(data => console.log(data))
             .catch(this.handleError);
     }
 

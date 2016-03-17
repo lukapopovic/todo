@@ -1,5 +1,5 @@
 export let CONFIG = {
     baseUrl: {
-        lists: 'app/data'
+        lists: 'api/lists'
     }
 }

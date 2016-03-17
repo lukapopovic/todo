@@ -7,7 +7,7 @@ System.register([], function(exports_1, context_1) {
         execute: function() {
             exports_1("CONFIG", CONFIG = {
                 baseUrl: {
-                    lists: 'app/data'
+                    lists: 'api/lists'
                 }
             });
         }

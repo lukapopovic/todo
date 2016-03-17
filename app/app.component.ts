@@ -18,9 +18,9 @@ import {DataService} from './shared/data.service';
     directives: [ROUTER_DIRECTIVES, HeaderComponent, ContentComponent, FooterComponent, AboutComponent],
     providers: [ROUTER_PROVIDERS,
                 HTTP_PROVIDERS,
-                provide(XHRBackend, { useClass: InMemoryBackendService }),
-                provide(SEED_DATA, { useClass: InMemoryTodoService }),
-                provide(InMemoryBackendConfig, { useValue: { delay: 300 } }),
+                // provide(XHRBackend, { useClass: InMemoryBackendService }),
+                // provide(SEED_DATA, { useClass: InMemoryTodoService }),
+                // provide(InMemoryBackendConfig, { useValue: { delay: 300 } }),
                 DataService]
 })
 @RouteConfig([
