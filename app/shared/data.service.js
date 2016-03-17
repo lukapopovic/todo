@@ -31,14 +31,10 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx', './config'], funct
             DataService = (function () {
                 function DataService(_http) {
                     this._http = _http;
+                    this._headers = new http_1.Headers();
+                    this._headers.append('Content-Type', 'application/json');
                 }
-                // getLists(){
-                //     console.log(listsUrl);
-                //     return this._http.get(listsUrl)
-                //         .map(res => <ListInterface[]> res.json())
-                //         .do(data => console.log(data))
-                //         .catch(this.handleError);
-                // }
+                ;
                 DataService.prototype.getLists = function () {
                     return this._http.get(listsUrl)
                         .map(function (response) { return response.json(); })
@@ -51,19 +47,19 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx', './config'], funct
                 };
                 DataService.prototype.addList = function (list) {
                     var body = JSON.stringify(list);
-                    console.log(body);
-                    return this._http.post("" + listsUrl, body)
+                    return this._http.post("" + listsUrl, body, { headers: this._headers })
                         .map(function (response) { return response.json(); })
-                        .do(function (data) { return console.log(data); })
                         .catch(this.handleError);
                 };
                 DataService.prototype.deleteList = function (list) {
-                    return this._http.delete(listsUrl + "/" + list.id)
+                    return this._http.delete(listsUrl + "/" + list._id)
+                        .map(function (response) { return response.json(); })
                         .catch(this.handleError);
                 };
                 DataService.prototype.updateList = function (list) {
                     var body = JSON.stringify(list);
-                    return this._http.put(listsUrl + "/" + list.id, body)
+                    return this._http.put(listsUrl + "/" + list._id, body, { headers: this._headers })
+                        .map(function (response) { return response.json(); })
                         .catch(this.handleError);
                 };
                 DataService.prototype.handleError = function (error) {

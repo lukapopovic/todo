@@ -33,7 +33,7 @@ System.register(['angular2/core', '../../shared/data.service', 'angular2/router'
                 OverviewComponent.prototype.save = function () {
                     var _this = this;
                     var list = {
-                        id: null,
+                        _id: null,
                         name: this.newName,
                         items: []
                     };

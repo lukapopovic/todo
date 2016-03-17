@@ -12,17 +12,29 @@ export class DetailComponent {
     tempList: ListInterface;
     newItem: string;
     checkedItems: string[] = [];
+    id: string;
 
     constructor(private _routeParams: RouteParams,
-                private _dataService: DataService){}
+                private _dataService: DataService){
+        this.id = _routeParams.get('id');
+    }
 
     ngOnInit(){
-        this.refreshItems();
+        this.loadItems();
     }
 
     saveItem(event){
         if(event.code === "Enter"){
-            console.log(this.tempList);
+            if(this.newItem === ''){
+                alert('Please enter todo!');
+                return;
+            }
+
+            if(_.includes(this.tempList.items, this.newItem)){
+                alert('todo with same name already exists!');
+                return;
+            }
+
             this.tempList.items.push(this.newItem);
             this.refreshItems(this.tempList);
             this.clearItemField();
@@ -46,15 +58,17 @@ export class DetailComponent {
         this.checkedItems = [];
     }
 
-    private refreshItems(list?: ListInterface){
-        let id = +this._routeParams.get('id');
-        if(list !== undefined){
-            this._dataService.updateList(this.tempList)
-                .subscribe(() => {});
-        }
-        this._dataService.getList(id).subscribe(list => {
+    private refreshItems(list: ListInterface) {
+        this._dataService.updateList(this.tempList)
+            .subscribe(data => {
+                this.loadItems();
+            });
+    }
+
+    private loadItems(){
+        this._dataService.getList(this.id).subscribe(list => {
             this.tempList = list;
-        });
+        });    
     }
 
     private clearItemField() {

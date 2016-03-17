@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {Http, Headers, Response} from 'angular2/http';
 import {ListInterface} from './list.interface';
 import {Observable} from 'rxjs/Rx';
 import {CONFIG} from './config';
@@ -8,16 +8,11 @@ let listsUrl = CONFIG.baseUrl.lists;
 
 @Injectable()
 export class DataService {
-
-    constructor(private _http: Http){}
-
-    // getLists(){
-    //     console.log(listsUrl);
-    //     return this._http.get(listsUrl)
-    //         .map(res => <ListInterface[]> res.json())
-    //         .do(data => console.log(data))
-    //         .catch(this.handleError);
-    // }
+    private _headers: Headers;;
+    constructor(private _http: Http){
+        this._headers = new Headers();
+        this._headers.append('Content-Type', 'application/json');
+    }
 
     getLists(){
         return this._http.get(listsUrl)
@@ -25,7 +20,7 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    getList(id: number){
+    getList(id: string){
         return this._http.get(`${listsUrl}/${id}`)
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -33,22 +28,22 @@ export class DataService {
 
     addList(list: ListInterface){
         let body = JSON.stringify(list);
-        console.log(body);
-        return this._http.post(`${listsUrl}`, body)
+        return this._http.post(`${listsUrl}`, body, { headers: this._headers })
             .map((response: Response) => response.json())
-            .do(data => console.log(data))
             .catch(this.handleError);
     }
 
     deleteList(list: ListInterface) {
-        return this._http.delete(`${listsUrl}/${list.id}`)
+        return this._http.delete(`${listsUrl}/${list._id}`)
+            .map((response: Response) => response.json())
             .catch(this.handleError);
         
     }
 
     updateList(list: ListInterface){
         let body = JSON.stringify(list);
-        return this._http.put(`${listsUrl}/${list.id}`, body)
+        return this._http.put(`${listsUrl}/${list._id}`, body, { headers: this._headers })
+            .map((response: Response) => response.json())
             .catch(this.handleError);
     }
 
@@ -56,4 +51,6 @@ export class DataService {
         console.error(error);
         return Observable.throw(error.json().error || 'Unknown Error');
     }
+
+    private 
 }

@@ -6,7 +6,7 @@
     <div class="list content-div">
         <ul>
             <li *ngFor="#list of previewLists">
-                <a [routerLink]="['List', {id: list.id}]">{{list.id}}. {{list.name}}</a>
+                <a [routerLink]="['List', {id: list._id}]">{{list.name}}</a>
                 <button type="button" class="close" aria-label="Close" (click)="remove(list)">
                     <span aria-hidden="true">&times;</span>
                 </button>

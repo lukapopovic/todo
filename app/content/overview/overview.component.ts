@@ -21,7 +21,7 @@ export class OverviewComponent {
 
     save(){
         let list = {
-            id: null,
+            _id: null,
             name: this.newName,
             items: []
         };
@@ -65,7 +65,7 @@ export class OverviewComponent {
     private refreshLists() {
         this._dataService.getLists()
         .subscribe(lists => {
-            this.previewLists = this.allLists = lists;         
+            this.previewLists = this.allLists = lists;        
         });
     }
 

@@ -25,7 +25,6 @@ router.get('/', function(req, res) {
 router.route('/lists')
     .post(function(req, res) {
         var list = new List();
-        console.log(req);
         list.name = req.body.name;
         list.items = req.body.items;
 

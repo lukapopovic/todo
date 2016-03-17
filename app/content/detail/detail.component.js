@@ -29,13 +29,21 @@ System.register(['angular2/core', 'angular2/router', '../../shared/data.service'
                     this._routeParams = _routeParams;
                     this._dataService = _dataService;
                     this.checkedItems = [];
+                    this.id = _routeParams.get('id');
                 }
                 DetailComponent.prototype.ngOnInit = function () {
-                    this.refreshItems();
+                    this.loadItems();
                 };
                 DetailComponent.prototype.saveItem = function (event) {
                     if (event.code === "Enter") {
-                        console.log(this.tempList);
+                        if (this.newItem === '') {
+                            alert('Please enter todo!');
+                            return;
+                        }
+                        if (_.includes(this.tempList.items, this.newItem)) {
+                            alert('todo with same name already exists!');
+                            return;
+                        }
                         this.tempList.items.push(this.newItem);
                         this.refreshItems(this.tempList);
                         this.clearItemField();
@@ -59,12 +67,14 @@ System.register(['angular2/core', 'angular2/router', '../../shared/data.service'
                 };
                 DetailComponent.prototype.refreshItems = function (list) {
                     var _this = this;
-                    var id = +this._routeParams.get('id');
-                    if (list !== undefined) {
-                        this._dataService.updateList(this.tempList)
-                            .subscribe(function () { });
-                    }
-                    this._dataService.getList(id).subscribe(function (list) {
+                    this._dataService.updateList(this.tempList)
+                        .subscribe(function (data) {
+                        _this.loadItems();
+                    });
+                };
+                DetailComponent.prototype.loadItems = function () {
+                    var _this = this;
+                    this._dataService.getList(this.id).subscribe(function (list) {
                         _this.tempList = list;
                     });
                 };
