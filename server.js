@@ -13,11 +13,6 @@ var port = process.env.PORT || 8080;
 
 var router = express.Router();
 
-router.use(function(req, res, next) {
-    console.log('Something is happening.');
-    next();
-});
-
 router.get('/', function(req, res) {
     res.json({ message: 'It works!'});
 });
@@ -80,6 +75,11 @@ router.route('/lists/:list_id')
     });
 
 app.use('/api', router);
+
 app.use(express.static('./'));
+app.get('*', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
+
 app.listen(port);
 console.log('Port: ' + port);

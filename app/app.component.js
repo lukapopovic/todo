@@ -51,6 +51,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
                         directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent, content_component_1.ContentComponent, footer_component_1.FooterComponent, about_component_1.AboutComponent],
                         providers: [router_1.ROUTER_PROVIDERS,
                             http_1.HTTP_PROVIDERS,
+                            //Overrides the backend and creates mocked one.
                             // provide(XHRBackend, { useClass: InMemoryBackendService }),
                             // provide(SEED_DATA, { useClass: InMemoryTodoService }),
                             // provide(InMemoryBackendConfig, { useValue: { delay: 300 } }),

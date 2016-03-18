@@ -18,6 +18,7 @@ import {DataService} from './shared/data.service';
     directives: [ROUTER_DIRECTIVES, HeaderComponent, ContentComponent, FooterComponent, AboutComponent],
     providers: [ROUTER_PROVIDERS,
                 HTTP_PROVIDERS,
+                //Overrides the backend and creates mocked one.
                 // provide(XHRBackend, { useClass: InMemoryBackendService }),
                 // provide(SEED_DATA, { useClass: InMemoryTodoService }),
                 // provide(InMemoryBackendConfig, { useValue: { delay: 300 } }),
@@ -26,6 +27,4 @@ import {DataService} from './shared/data.service';
 @RouteConfig([
     {path: '/about', name: 'About', component: AboutComponent, useAsDefault: true},
     { path: '/lists/...', name: 'Lists', component: ContentComponent }])
-export class AppComponent {
-
-}
+export class AppComponent {}
